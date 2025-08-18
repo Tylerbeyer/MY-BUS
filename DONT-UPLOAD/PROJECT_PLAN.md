@@ -1,4 +1,4 @@
-# Project Plan: Business Management Suite (BUSFLOW)
+# Project Plan: Business Management Suite (My-Bus)
 
 ---
 
@@ -32,8 +32,7 @@ After a thorough review of the project requirements, the following key points ha
 ## Plan: Phased Development
 
 **Phase 1: Project Setup & Core Infrastructure (Foundation)**
-- [ ] Set up Git repository for version control.
-- [ ] Create the project structure with Laravel for the backend and React for the frontend.
+- [X] Create the project structure with Laravel for the backend and React for the frontend.
 - [ ] Configure the database connection (MySQL).
 - [ ] Implement a basic PWA shell (manifest file, service worker) for offline capability.
 - [ ] Create a global configuration system for company name, title, and theme colors/fonts.
