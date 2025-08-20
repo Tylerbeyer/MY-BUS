@@ -41,10 +41,10 @@ After a thorough review of the project requirements, the following key points ha
 - [X] Create `PROJECT_PLAN.md` (this file).
 
 **Phase 2: User & Employee Management**
-- [ ] Build the backend authentication system (Login/Logout) using JWT (Laravel Sanctum).
-- [ ] Implement a role-based access control (RBAC) system for the defined user roles.
-- [ ] Create a seeder to automatically generate the "Master Admin" account.
-- [ ] Develop the frontend login page and main application layout.
+- [X] Build the backend authentication system (Login/Logout) using JWT (Laravel Sanctum).
+- [X] Implement a role-based access control (RBAC) system for the defined user roles.
+- [X] Create a seeder to automatically generate the "Master Admin" account.
+- [X] Develop the frontend login page and main application layout.
 - [ ] Create the "Employee Management" section UI for admins to add, view, and edit employee profiles.
 - [ ] Build API endpoints for all employee CRUD (Create, Read, Update, Delete) operations.
 
