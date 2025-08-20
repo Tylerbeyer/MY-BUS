@@ -71,3 +71,9 @@ Notes:
 - The system supports multiple devices and simultaneous logins.
 - Real-time communication and task management are core features.
 - Security, scalability, and cross-platform compatibility are foundational.
+
+
+
+Laravel project is running on my server at [https:](https://mybus.sccwy.com/)
+
+it is just the laravel welcome page. lets get on with 

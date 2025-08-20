@@ -33,12 +33,12 @@ After a thorough review of the project requirements, the following key points ha
 
 **Phase 1: Project Setup & Core Infrastructure (Foundation)**
 - [X] Create the project structure with Laravel for the backend and React for the frontend.
-- [ ] Configure the database connection (MySQL).
-- [ ] Implement a basic PWA shell (manifest file, service worker) for offline capability.
-- [ ] Create a global configuration system for company name, title, and theme colors/fonts.
-- [ ] Design the initial database schema (Users, Roles, Permissions).
-- [ ] Create a `README.md` with initial project setup instructions.
-- [ ] Create `PROJECT_PLAN.md` (this file).
+- [X] Configure the database connection (MySQL).
+- [X] Implement a basic PWA shell (manifest file, service worker) for offline capability.
+- [X] Create a global configuration system for company name, title, and theme colors/fonts.
+- [X] Design the initial database schema (Users, Roles, Permissions).
+- [X] Create a `README.md` with initial project setup instructions.
+- [X] Create `PROJECT_PLAN.md` (this file).
 
 **Phase 2: User & Employee Management**
 - [ ] Build the backend authentication system (Login/Logout) using JWT (Laravel Sanctum).
