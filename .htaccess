@@ -1,5 +1,19 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule ^$ backend/public/ [L]
-    RewriteRule (.*) backend/public/$1 [L]
+
+    # --- API Rule ---
+    # If the request is for the backend API, let it pass through to the backend directory.
+    # The frontend is configured to call /backend/public/api directly.
+    RewriteRule ^backend/ - [L]
+
+    # --- Frontend Rules ---
+    # 1. If a requested file exists in the 'frontend/dist' directory, serve it directly.
+    # This handles CSS, JS, and image files.
+    RewriteCond %{DOCUMENT_ROOT}/frontend/dist%{REQUEST_URI} -f
+    RewriteRule ^(.*)$ /frontend/dist/$1 [L]
+
+    # 2. For any other request, serve the React app's main index.html file.
+    # This is the "catch-all" that allows React Router to handle all page URLs.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ /frontend/dist/index.html [L]
 </IfModule>
