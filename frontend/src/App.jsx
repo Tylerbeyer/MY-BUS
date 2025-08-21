@@ -4,7 +4,7 @@ import Login from './components/Login';
 import Layout from './components/Layout';
 
 function App() {
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
 
   return (
     <div>
