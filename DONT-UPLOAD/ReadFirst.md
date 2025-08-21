@@ -76,4 +76,5 @@ Notes:
 
 Laravel project is running on my server at [https:](https://mybus.sccwy.com/)
 
-it is just the laravel welcome page. lets get on with 
+admin Email: admin@example.com      Password: password
+
