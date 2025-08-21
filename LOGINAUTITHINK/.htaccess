@@ -1,0 +1,7 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/sccwyqcw/mybus.sccwy.com/frontend"
+PassengerBaseURI "/LOGINAUTITHINK"
+PassengerNodejs "/home/sccwyqcw/nodevenv/mybus.sccwy.com/frontend/24/bin/node"
+PassengerAppType node
+PassengerStartupFile src/main.jsx
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
