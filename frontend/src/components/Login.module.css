@@ -1,0 +1,101 @@
+/* 
+  Main container for the entire login view.
+  - Uses flexbox to center the login form perfectly in the middle of the page.
+  - `min-height: 100vh` ensures it takes up the full browser window height.
+  - `background-color: #1a1a1a` sets a dark, near-black background.
+*/
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  font-family: sans-serif;
+}
+
+/*
+  The white box that holds the form content.
+  - `background: #ffffff` gives it a white background.
+  - `padding` adds space inside the box.
+  - `border-radius` gives it slightly rounded corners.
+  - `box-shadow` adds a subtle glow effect to lift it off the page.
+  - `width` and `max-width` make it responsive.
+*/
+.loginForm {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Styles for the "Login" heading */
+.title {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+/* A container for each label and input pair */
+.inputGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* Styles for the labels (Email, Password) */
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: bold;
+}
+
+/* 
+  Styles for the text input fields.
+  - `width: 100%` makes them fill the container.
+  - `padding` gives text inside some space.
+  - `border` defines the grey border.
+  - `border-radius` gives them rounded corners.
+  - `transition` makes the color change smooth when you click on it.
+*/
+.input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Important for padding and border to work well with width */
+  transition: border-color 0.3s;
+}
+
+/* Changes the border color to orange when the input is focused (clicked on) */
+.input:focus {
+  border-color: #ff8c00; /* Dark Orange */
+  outline: none; /* Removes the default blue glow */
+}
+
+/*
+  Styles for the login button.
+  - `background-color: #ff8c00` is our main orange theme color.
+  - `color: #ffffff` makes the text white.
+  - `cursor: pointer` shows a hand icon on hover.
+  - `transition` makes the background color change smooth on hover.
+*/
+.button {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff8c00; /* Dark Orange */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Darkens the button slightly when you hover over it */
+.button:hover {
+  background-color: #e07b00;
+}
