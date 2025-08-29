@@ -1,0 +1,78 @@
+# MY-BUS Application Deployment Instructions for Namecheap
+
+This guide provides the steps to build and deploy your application to a Namecheap shared hosting server.
+
+---
+### **Part 1: Prepare the Frontend (Run on your Local Computer)**
+---
+
+The goal of this part is to bundle your React user interface into a set of static HTML, CSS, and JavaScript files that a web server can host.
+
+1.  **Navigate to the Frontend Directory:**
+    Open your terminal or command prompt and go into the frontend folder:
+    `cd frontend`
+
+2.  **Confirm the API URL:**
+    Open the file `frontend/.env.production` in your code editor. Make sure the `VITE_API_BASE_URL` variable points to the final, live URL of your backend API. For example:
+    `VITE_API_BASE_URL="https://api.your-domain.com"`
+
+3.  **Install Dependencies (if you haven't already):**
+    If you've just downloaded the project or cleared your `node_modules` folder, run this command to install the necessary libraries:
+    `npm install`
+
+4.  **Build the Application:**
+    Run the build command. This is the most important step for the frontend.
+    `npm run build`
+
+    This command will create a new folder at `frontend/dist`. The contents of this `dist` folder are what you will upload to the server.
+
+---
+### **Part 2: Prepare the Backend (Local Actions)**
+---
+
+The backend code doesn't need a "build" step like the frontend, but you should ensure it's ready for upload.
+
+1.  **Install Composer Dependencies:**
+    Make sure your PHP packages are installed by 
+    running this command in the `backend` directory:
+    `composer install --no-dev --optimize-autoloader`
+
+2.  **Check Backend Configuration:**
+    Open the `backend/.env` file. 
+    Ensure that `APP_ENV` is set to `production` 
+    and `APP_DEBUG` is set to `false`. 
+    Most importantly, confirm that your `DB_` settings (DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD) are correct for your Namecheap database.
+
+---
+### **Part 3: Upload to Namecheap Server**
+---
+
+Use an FTP client (like FileZilla) or the cPanel File Manager provided by Namecheap for these steps.
+
+1.  **Upload the Frontend:**
+    - Navigate to the `public_html` directory on your server (or the document root for your main domain).
+    - Upload all the files and folders from **inside** your local `frontend/dist` directory into `public_html`.
+
+2.  **Upload the Backend:**
+    - On your server, at the same level as `public_html`, create a new directory for your backend (e.g., `my_bus_api`).
+    - Upload all the files and folders from your local `backend` directory into this new `my_bus_api` directory.
+
+---
+### **Part 4: Configure the Server (cPanel Actions)**
+---
+
+This is the final and most critical part to make the application work correctly.
+
+1.  **Set the Backend Document Root:**
+    - You need to tell the server that when someone visits your API URL (e.g., `api.your-domain.com`), 
+    it should look in the `public` folder of your backend.
+    - In cPanel, go to "Domains" or "Subdomains".
+    - Find the domain/subdomain you are using for the API.
+    - Change its "Document Root" to point to the `public` folder of your backend upload. For example: `public_html/my_bus_api/public` (the exact path may vary).
+
+    **This is essential for security and for Laravel's routing to work.**
+
+2.  **Final Check:**
+    - Clear any server-side caches if applicable.
+    - Visit your main domain. You should see the login page of your application.
+    - Log in and test the functionality.

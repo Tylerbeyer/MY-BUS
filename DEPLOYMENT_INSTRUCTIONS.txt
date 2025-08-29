@@ -1,0 +1,105 @@
+# MY-BUS Application Deployment Instructions for Namecheap (Updated)
+
+This guide provides the steps to build and deploy your application to a Namecheap shared hosting server. This version is updated to run final installation steps on the server via SSH.
+
+---
+### **Part 1: Prepare the Frontend (Run on your Local Computer)**
+---
+
+1.  **Navigate to the Frontend Directory:**
+    `cd frontend`
+
+2.  **Confirm the API URL:**
+    Open `frontend/.env.production` and ensure `VITE_API_BASE_URL` points to your live backend API URL.
+
+3.  **Install Dependencies:**
+    `npm install`
+
+4.  **Build the Application:**
+    `npm run build`
+    This creates a `frontend/dist` folder. The contents of this folder are what you will upload.
+
+---
+### **Part 2: Prepare the Backend (Local Actions)**
+---
+
+1.  **Check Backend Configuration:**
+    Before uploading, open the `backend/.env.example` file. You will be creating a new `.env` file on the server based on this, so make sure it's present. The `backend` code will be uploaded **without** the `vendor` folder.
+
+---
+### **Part 3: Upload to Namecheap Server**
+---
+
+Use an FTP client (like FileZilla) or the cPanel File Manager.
+
+1.  **Upload Frontend:**
+    - Navigate to `public_html` on your server.
+    - Upload all files and folders from **inside** your local `frontend/dist` directory into `public_html`.
+
+2.  **Upload Backend:**
+    - On your server, at the same level as `public_html`, create a new directory (e.g., `my_bus_api`).
+    - Upload all files and folders from your local `backend` directory into this new `my_bus_api` directory. **DO NOT** upload the `vendor` folder.
+
+---
+### **Part 4: Configure the Server (cPanel Actions)**
+---
+
+1.  **Set the Backend Document Root:**
+    - In cPanel, go to "Domains" or "Subdomains".
+    - Point the Document Root for your API domain to the `public` folder of your backend upload (e.g., `public_html/my_bus_api/public`). This is crucial for security.
+
+---
+### **Part 5: Final Server-Side Setup (SSH)**
+---
+
+Connect to your server using SSH to run these final commands.
+
+1.  **Navigate to the Backend Directory:**
+    `cd my_bus_api` (or whatever you named the backend folder).
+
+2.  **Install Composer Dependencies:**
+    `composer install --no-dev --optimize-autoloader`
+
+3.  **Create Your Environment File:**
+    `cp .env.example .env`
+
+4.  **Edit the Environment File:**
+    `nano .env`
+    - Set `APP_ENV=production` and `APP_DEBUG=false`.
+    - Enter your correct database credentials (DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+    - Save and exit (`Ctrl+X`, then `Y`, then `Enter`).
+
+5.  **Generate Application Key:**
+    `php artisan key:generate`
+
+6.  **Run Database Migrations:**
+    This creates the `users` table and others.
+    `php artisan migrate`
+
+7.  **Create Your Admin User (Manual):**
+    This will open an interactive shell where you will create the user.
+    `php artisan tinker`
+
+    Once inside tinker (`>>>`), copy and paste the following code block and press `Enter`:
+
+    ```php
+    \App\Models\User::create([
+        'name' => 'topadmin',
+        'email' => 'Adminty@example.com',
+        'password' => bcrypt('changeme'),
+    ]);
+    ```
+
+    You should see the new user's details printed. Now, type `exit` and press `Enter` to leave tinker.
+    **IMPORTANT:** Log in with the email `admin@mybus.app` and password `changeme` immediately and change your password.
+
+8.  **Optimize for Production:**
+    These commands cache your configuration and routes for a significant speed boost.
+    `php artisan config:cache`
+    `php artisan route:cache`
+
+---
+### **Part 6: Final Check**
+---
+- Visit your main domain. You should see the login page.
+- Log in as the admin user and test the application's functionality. The setup is now complete.
